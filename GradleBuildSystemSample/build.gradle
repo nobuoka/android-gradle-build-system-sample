@@ -10,6 +10,7 @@ apply plugin: 'android'
 
 dependencies {
     compile files('libs/android-support-v4.jar')
+    compile project(':libraries:volley')
 }
 
 android {
@@ -17,7 +18,7 @@ android {
     buildToolsVersion "17.0.0"
 
     defaultConfig {
-        minSdkVersion 7
+        minSdkVersion 8
         targetSdkVersion 16
     }
 }
