@@ -7,11 +7,20 @@
     android:paddingLeft="3sp"
     android:paddingRight="3sp" >
 
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/haiku_user_profile_image_container"
+        android:layout_width="36sp"
+        android:layout_height="36sp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="3sp" >
+    </com.android.volley.toolbox.NetworkImageView>
+
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_toRightOf="@id/haiku_user_profile_image_container"
         android:layout_alignParentTop="true"
         android:text="" />
 
@@ -20,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/name"
-        android:layout_alignParentLeft="true"
+        android:layout_toRightOf="@id/haiku_user_profile_image_container"
         android:text="" />
 
 </RelativeLayout>

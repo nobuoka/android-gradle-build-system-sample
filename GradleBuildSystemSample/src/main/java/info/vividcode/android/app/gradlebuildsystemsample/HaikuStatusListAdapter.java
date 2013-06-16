@@ -2,6 +2,9 @@ package info.vividcode.android.app.gradlebuildsystemsample;
 
 import java.util.List;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +19,15 @@ class HaikuStatusListAdapter extends ArrayAdapter<HaikuStatus> {
 
     private final LayoutInflater mInflater;
 
+    private final ImageLoader mImageLoader;
+
     private final int mLimit;
 
-    public HaikuStatusListAdapter(Activity act, int limit) {
+    public HaikuStatusListAdapter(Activity act, ImageLoader imageLoader, int limit) {
         super(act, android.R.layout.simple_list_item_1);
         mInflater = (LayoutInflater) act.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         mLimit = limit;
+        mImageLoader = imageLoader;
     }
 
     public void addAllOnHead(List<HaikuStatus> statuses) {
@@ -49,6 +55,8 @@ class HaikuStatusListAdapter extends ArrayAdapter<HaikuStatus> {
         nameView.setText(status.userName);
         TextView textView = (TextView) convertView.findViewById(R.id.text);
         textView.setText(status.text);
+        NetworkImageView profileImageView = (NetworkImageView) convertView.findViewById(R.id.haiku_user_profile_image_container);
+        profileImageView.setImageUrl(status.profileImageUrl, mImageLoader);
 
         return convertView;
     }

@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -49,9 +50,11 @@ public class MainActivity extends Activity {
         List<HaikuStatus> statuses = new ArrayList<HaikuStatus>(length);
         for (int i = 0; i < length; ++i) {
             JSONObject statusObj = statusesJson.getJSONObject(i);
-            String userName = statusObj.getJSONObject("user").getString("name");
+            JSONObject userObj = statusObj.getJSONObject("user");
+            String userName = userObj.getString("name");
+            String userProfileImageUrl = userObj.getString("profile_image_url");
             String text = statusObj.getString("text");
-            statuses.add(new HaikuStatus(userName, text));
+            statuses.add(new HaikuStatus(userName, text, userProfileImageUrl));
         }
         return statuses;
     }
@@ -89,7 +92,8 @@ public class MainActivity extends Activity {
         });
 
         // ListView に Adapter を結び付ける
-        mHaikuStatusListAdapter = new HaikuStatusListAdapter(this, 10);
+        ImageLoader imageLoader = new ImageLoader(mRequestQueue, new BitmapCache());
+        mHaikuStatusListAdapter = new HaikuStatusListAdapter(this, imageLoader, 10);
         ListView v = (ListView) findViewById(R.id.haiku_timeline_view);
         v.setAdapter(mHaikuStatusListAdapter);
     }
