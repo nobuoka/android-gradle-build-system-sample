@@ -3,6 +3,9 @@ Gradle Build System Sample
 
 [Gradle](http://www.gradle.org/) による Android アプリのビルドのサンプルのためのプロジェクトです。
 
+Android Gradle プラグイン 0.7.x (Android Studio 0.4.x 対応版) を使っています。
+より新しいバージョンでは、記述方法などが変更される可能性があります。
+
 ## 参考資料
 
 * Gradle の android プラグインの説明: [Gradle Plugin User Guide — Android Tools Project Site](http://tools.android.com/tech-docs/new-build-system/user-guide)
@@ -29,14 +32,11 @@ Gradle を使って Android アプリのビルドができるサンプルプロ�
 ## 本プロジェクトのビルド方法
 
 ```
-# プロジェクトを git clone する
-git clone git@github.com:nobuoka/android-gradle-build-system-sample.git
+# プロジェクトを git clone する (サブモジュールも)
+git clone --recursive git@github.com:nobuoka/android-gradle-build-system-sample.git
 
 # 移動
 cd android-gradle-build-system-sample
-
-# サブモジュールの init
-git submodule update --recursive --init
 
 # ビルド
 ANDROIND_HOME=/path/to/android_sdk ./gradlew build

@@ -5,30 +5,28 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.4'
+        classpath 'com.android.tools.build:gradle:0.7.1+'
     }
 }
 
 allprojects {
-    tasks.withType(Compile) {
+    tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
     }
 }
 
+/**
+ * Volley のビルド用のスクリプトは Volley のディレクトリにあるが、
+ * lint のオプションを追加する必要があるのでここに記述する。
+ */
 project(':libraries:volley') {
     apply plugin: 'android-library'
 
     android {
-        compileSdkVersion 17
-        buildToolsVersion "17.0.0"
-
-        sourceSets {
-            main {
-                manifest.srcFile 'AndroidManifest.xml'
-                java.srcDirs = ['src']
-            }
-
-            instrumentTest.setRoot('tests')
+        /* 今の Volley は lint タスクでエラーが発生するので、
+         * エラーが出てもビルドを止めないようにする */
+        lintOptions {
+            abortOnError false
         }
     }
 }

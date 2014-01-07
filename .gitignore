@@ -1,0 +1,9 @@
+/local.properties
+
+# Building with Gradle
+build/
+/.gradle/
+
+# Android Studio
+/.idea/
+*.iml
