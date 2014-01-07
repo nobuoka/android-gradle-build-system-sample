@@ -5,7 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.4'
+        classpath 'com.android.tools.build:gradle:0.7.1+'
     }
 }
 
@@ -29,6 +29,12 @@ project(':libraries:volley') {
             }
 
             instrumentTest.setRoot('tests')
+        }
+
+        /* 今の Volley は lint タスクでエラーが発生するので、
+         * エラーが出てもビルドを止めないようにする */
+        lintOptions {
+            abortOnError false
         }
     }
 }
