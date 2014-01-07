@@ -1,8 +1,11 @@
 apply plugin: 'android'
 
 dependencies {
-    compile files('libs/android-support-v4.jar')
     compile project(':libraries:volley')
+
+    /* Android SDK Manager を使って、「Android Support Library」 と 「Android Support Repository」 を
+     * 予めインストールしておくこと。 */
+    compile 'com.android.support:support-v4:19.0.+'
 }
 
 android {
